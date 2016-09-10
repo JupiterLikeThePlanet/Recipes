@@ -1,9 +1,8 @@
 var React = require('react');
 // var recipe_object = require('recipe_object');
-// var Recipes = React.createClass({
 
 class Recipes extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             list: [
@@ -59,13 +58,70 @@ class Recipes extends React.Component {
         }
     }
 
-    render () {
+// {list.map(function(listValue){
+//     return <li>{listValue}</li>;
+// })}
+
+    render() {
+        var full_recipe_list=[];
+        var list_length = this.state.list.length;
+        var list = this.state.list;
+
         return (
+
             <div>
-                <h2>Recipes component has rendered</h2>
+                <h2>Recipes</h2>
+                <div>
+                    <ul>
+                        {list.map(function(recipe, i){
+                            return <li key={i}>
+                                        Dish: {[recipe.name]}
+                                        <br/>
+                                        Type: {[recipe.type]}
+                                        <br/>
+                                        Cook Time: {[recipe.cook_time]}
+                                        <br/>
+                                        Ingredients: {[recipe.ingredients.map(function(ingredient, i){
+
+                                                return <p key={i}> {[ingredient]} </p>
+                                                }
+                                            )]}
+
+                                        <br/>
+                                        <hr/>
+                                   </li>
+                            }
+                        )}
+                    </ul>
+                </div>
             </div>
         );
-    }
-};
+    };
+}
 
 module.exports = Recipes;
+
+var data = [{name:'Jhon', age:28, city:'HO'},{name:'Onhj', age:82, city:'HN'},{name:'Nohj', age:41, city:'IT'}]
+
+// var Recipe = React.createClass({
+//
+//     render: function() {
+//
+//         var _data = this.props.info;
+//         console.log(_data);
+//         return(
+//             <div>
+//                 {_data.map(function(object, i){
+//                     return <div className={"row"} key={i}>
+//                         {[ object.name ,
+//                             <b className="fosfo" key={i}> {object.city} </b> , // remove the key
+//                             object.age
+//                         ]}
+//                     </div>;
+//                 })}
+//             </div>
+//         );
+//     }
+// });
+//
+// React.render(<Recipe info={data} />, document.body);

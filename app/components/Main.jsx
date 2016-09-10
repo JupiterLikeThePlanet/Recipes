@@ -7,7 +7,7 @@ var Main = React.createClass({
        return (
            <div>
                <Nav/>
-               <h2>Main component renders here</h2>
+               <h2>Recipes App, take a look</h2>
                     {this.props.children}
            </div>
        );

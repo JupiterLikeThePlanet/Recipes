@@ -5,7 +5,6 @@ var Nav = React.createClass({
    render: function () {
        return (
            <div>
-               <h3>nav bar here</h3>
                <Link to="/">Recipes</Link>
                <br/>
                <Link to="about">About</Link>
@@ -17,3 +16,4 @@ var Nav = React.createClass({
 });
 
 module.exports = Nav;
+
