@@ -10,6 +10,7 @@ var Nav = React.createClass({
                <Link to="about">About</Link>
                <br/>
                <Link to="instructions">Instructions</Link>
+               <hr/>
            </div>
        );
    }

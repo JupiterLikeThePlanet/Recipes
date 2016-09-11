@@ -10,6 +10,8 @@ module.exports = {
             Main: 'app/components/Main.jsx',
             Nav: 'app/components/Nav.jsx',
             Recipes: 'app/components/Recipes.jsx',
+            RecipeForm:'app/components/RecipeForm.jsx',
+            RecipeMessage:'app/components/RecipeMessage.jsx',
             About: 'app/components/About.jsx',
             Instructions: 'app/components/Instructions.jsx',
             recipe_object: 'data_science_test/recipes.json'

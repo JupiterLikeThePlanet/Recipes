@@ -1,5 +1,6 @@
 var React = require('react');
-// var recipe_object = require('recipe_object');
+var RecipeForm = require('RecipeForm');
+var RecipeMessage = require('RecipeMessage');
 
 class Recipes extends React.Component {
     constructor(props) {
@@ -58,6 +59,27 @@ class Recipes extends React.Component {
         }
     }
 
+    sortByIngredient(ingredient){
+        var new_list = [];
+        var list = this.state.list;
+        // var names = list.map(function(list_item){ for(var i = 0; i < list.length; i++){return list[i].name}}
+
+        for (var i = 0; i < list.length; i++) {
+            for (var i = 0; i < list.ingredient.length; i++) {
+                if (ingredient === list.ingredient[i]) {
+                    new_list.push(list[i].name)
+                }else{
+                    new_list = "Ingredient not found";
+                }
+            }
+        }
+        this.setState({
+            list : new_list
+        })
+        console.log(new_list);
+
+    }
+
 // {list.map(function(listValue){
 //     return <li>{listValue}</li>;
 // })}
@@ -71,29 +93,8 @@ class Recipes extends React.Component {
 
             <div>
                 <h2>Recipes</h2>
-                <div>
-                    <ul>
-                        {list.map(function(recipe, i){
-                            return <li key={i}>
-                                        Dish: {[recipe.name]}
-                                        <br/>
-                                        Type: {[recipe.type]}
-                                        <br/>
-                                        Cook Time: {[recipe.cook_time]}
-                                        <br/>
-                                        Ingredients: {[recipe.ingredients.map(function(ingredient, i){
-
-                                                return <p key={i}> {[ingredient]} </p>
-                                                }
-                                            )]}
-
-                                        <br/>
-                                        <hr/>
-                                   </li>
-                            }
-                        )}
-                    </ul>
-                </div>
+                <RecipeForm/>
+                <RecipeMessage list={list}/>
             </div>
         );
     };
@@ -101,27 +102,3 @@ class Recipes extends React.Component {
 
 module.exports = Recipes;
 
-var data = [{name:'Jhon', age:28, city:'HO'},{name:'Onhj', age:82, city:'HN'},{name:'Nohj', age:41, city:'IT'}]
-
-// var Recipe = React.createClass({
-//
-//     render: function() {
-//
-//         var _data = this.props.info;
-//         console.log(_data);
-//         return(
-//             <div>
-//                 {_data.map(function(object, i){
-//                     return <div className={"row"} key={i}>
-//                         {[ object.name ,
-//                             <b className="fosfo" key={i}> {object.city} </b> , // remove the key
-//                             object.age
-//                         ]}
-//                     </div>;
-//                 })}
-//             </div>
-//         );
-//     }
-// });
-//
-// React.render(<Recipe info={data} />, document.body);

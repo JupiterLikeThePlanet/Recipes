@@ -58,8 +58,8 @@
 
 	var Main = __webpack_require__(222);
 	var Recipes = __webpack_require__(224);
-	var About = __webpack_require__(225);
-	var Instructions = __webpack_require__(226);
+	var About = __webpack_require__(227);
+	var Instructions = __webpack_require__(228);
 
 	ReactDOM.render(React.createElement(
 	    Router,
@@ -25435,11 +25435,6 @@
 	            'div',
 	            null,
 	            React.createElement(Nav, null),
-	            React.createElement(
-	                'h2',
-	                null,
-	                'Recipes App, take a look'
-	            ),
 	            this.props.children
 	        );
 	    }
@@ -25483,7 +25478,8 @@
 	                Link,
 	                { to: 'instructions' },
 	                'Instructions'
-	            )
+	            ),
+	            React.createElement('hr', null)
 	        );
 	    }
 	});
@@ -25494,7 +25490,7 @@
 /* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -25505,7 +25501,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var React = __webpack_require__(1);
-	// var recipe_object = require('recipe_object');
+	var RecipeForm = __webpack_require__(225);
+	var RecipeMessage = __webpack_require__(226);
 
 	var Recipes = function (_React$Component) {
 	    _inherits(Recipes, _React$Component);
@@ -25561,61 +25558,49 @@
 	        return _this;
 	    }
 
-	    // {list.map(function(listValue){
-	    //     return <li>{listValue}</li>;
-	    // })}
-
 	    _createClass(Recipes, [{
-	        key: "render",
+	        key: 'sortByIngredient',
+	        value: function sortByIngredient(ingredient) {
+	            var new_list = [];
+	            var list = this.state.list;
+	            // var names = list.map(function(list_item){ for(var i = 0; i < list.length; i++){return list[i].name}}
+
+	            for (var i = 0; i < list.length; i++) {
+	                for (var i = 0; i < list.ingredient.length; i++) {
+	                    if (ingredient === list.ingredient[i]) {
+	                        new_list.push(list[i].name);
+	                    } else {
+	                        new_list = "Ingredient not found";
+	                    }
+	                }
+	            }
+	            this.setState({
+	                list: new_list
+	            });
+	            console.log(new_list);
+	        }
+
+	        // {list.map(function(listValue){
+	        //     return <li>{listValue}</li>;
+	        // })}
+
+	    }, {
+	        key: 'render',
 	        value: function render() {
 	            var full_recipe_list = [];
 	            var list_length = this.state.list.length;
 	            var list = this.state.list;
 
 	            return React.createElement(
-	                "div",
+	                'div',
 	                null,
 	                React.createElement(
-	                    "h2",
+	                    'h2',
 	                    null,
-	                    "Recipes"
+	                    'Recipes'
 	                ),
-	                React.createElement(
-	                    "div",
-	                    null,
-	                    React.createElement(
-	                        "ul",
-	                        null,
-	                        list.map(function (recipe, i) {
-	                            return React.createElement(
-	                                "li",
-	                                { key: i },
-	                                "Dish: ",
-	                                [recipe.name],
-	                                React.createElement("br", null),
-	                                "Type: ",
-	                                [recipe.type],
-	                                React.createElement("br", null),
-	                                "Cook Time: ",
-	                                [recipe.cook_time],
-	                                React.createElement("br", null),
-	                                "Ingredients: ",
-	                                [recipe.ingredients.map(function (ingredient, i) {
-
-	                                    return React.createElement(
-	                                        "p",
-	                                        { key: i },
-	                                        " ",
-	                                        [ingredient],
-	                                        " "
-	                                    );
-	                                })],
-	                                React.createElement("br", null),
-	                                React.createElement("hr", null)
-	                            );
-	                        })
-	                    )
-	                )
+	                React.createElement(RecipeForm, null),
+	                React.createElement(RecipeMessage, { list: list })
 	            );
 	        }
 	    }]);
@@ -25625,33 +25610,97 @@
 
 	module.exports = Recipes;
 
-	var data = [{ name: 'Jhon', age: 28, city: 'HO' }, { name: 'Onhj', age: 82, city: 'HN' }, { name: 'Nohj', age: 41, city: 'IT' }];
-
-	// var Recipe = React.createClass({
-	//
-	//     render: function() {
-	//
-	//         var _data = this.props.info;
-	//         console.log(_data);
-	//         return(
-	//             <div>
-	//                 {_data.map(function(object, i){
-	//                     return <div className={"row"} key={i}>
-	//                         {[ object.name ,
-	//                             <b className="fosfo" key={i}> {object.city} </b> , // remove the key
-	//                             object.age
-	//                         ]}
-	//                     </div>;
-	//                 })}
-	//             </div>
-	//         );
-	//     }
-	// });
-	//
-	// React.render(<Recipe info={data} />, document.body);
-
 /***/ },
 /* 225 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var RecipeForm = React.createClass({
+	    displayName: 'RecipeForm',
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'h2',
+	                null,
+	                'Recipe Form rendering'
+	            )
+	        );
+	    }
+	});
+
+	module.exports = RecipeForm;
+
+/***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var RecipeMessage = React.createClass({
+	    displayName: 'RecipeMessage',
+
+	    render: function render() {
+	        var list = this.props.list;
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'h2',
+	                null,
+	                'Recipe Message'
+	            ),
+	            React.createElement(
+	                'div',
+	                null,
+	                React.createElement(
+	                    'ul',
+	                    null,
+	                    list.map(function (recipe, i) {
+	                        return React.createElement(
+	                            'li',
+	                            { key: i },
+	                            'Dish: ',
+	                            [recipe.name],
+	                            React.createElement('br', null),
+	                            'Type: ',
+	                            [recipe.type],
+	                            React.createElement('br', null),
+	                            'Cook Time: ',
+	                            [recipe.cook_time],
+	                            React.createElement('br', null),
+	                            'Ingredients: ',
+	                            [recipe.ingredients.map(function (ingredient, i) {
+
+	                                return React.createElement(
+	                                    'p',
+	                                    { key: i },
+	                                    ' ',
+	                                    [ingredient],
+	                                    ' '
+	                                );
+	                            })],
+	                            React.createElement('br', null),
+	                            React.createElement('hr', null)
+	                        );
+	                    })
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = RecipeMessage;
+
+/***/ },
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25677,7 +25726,7 @@
 	module.exports = About;
 
 /***/ },
-/* 226 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
