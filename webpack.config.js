@@ -12,6 +12,7 @@ module.exports = {
             Recipes: 'app/components/Recipes.jsx',
             RecipeForm:'app/components/RecipeForm.jsx',
             RecipeMessage:'app/components/RecipeMessage.jsx',
+            UniqueIngredient: 'app/components/UniqueIngredient.jsx',
             About: 'app/components/About.jsx',
             Instructions: 'app/components/Instructions.jsx',
             recipe_object: 'data_science_test/recipes.json'

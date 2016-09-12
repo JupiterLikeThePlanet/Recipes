@@ -21,15 +21,14 @@ var RecipeForm = React.createClass({
 
 
             for (var i = 0; i < list.length; i++) {
-                console.log('first for loop');
+                // console.log('first for loop');
                 for (var x = 0; x < list[i].ingredients.length; x++) {
-                    console.log('second for loop');
+                    // console.log('second for loop');
                     if (ingredient == list[i].ingredients[x]) {
-                        console.log('inner most if statement');
-                        // new_list.push(list[i].name)
+                        // console.log('inner most if statement');
                         new_list.push(list[i])
-                        console.log('if statement new list');
-                        console.log(new_list);
+                        // console.log('if statement new list');
+                        // console.log(new_list);
                     }else{
                         console.log('hit the else')
                         // new_list = "Ingredient not found";
@@ -57,7 +56,7 @@ var RecipeForm = React.createClass({
                         <input type="text" ref="ingredient" placeholder="Enter query here" />
                     </div>
                     <div>
-                        <button>Search</button>
+                        <button>Search Ingredient</button>
                     </div>
                 </form>
             </div>

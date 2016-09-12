@@ -1,6 +1,7 @@
 var React = require('react');
 var RecipeForm = require('RecipeForm');
 var RecipeMessage = require('RecipeMessage');
+var UniqueIngredient = require('UniqueIngredient');
 
 // class Recipes extends React.Component {
 //     constructor(props) {
@@ -156,14 +157,16 @@ var Recipes = React.createClass({
                     "ingredients": ["Onion", "Oil", "Rice", "Egg", "Soy Sauce", "Sesame Oil", "Chicken", "Carrot", "Peas"]
                 }
             ],
-            queryResult: ''
+            queryResult: '',
+            uniqIngredients: '',
         };
     },
 
     getInitialState: function () {
         return {
             list: this.props.list,
-            queryResult: this.props.list
+            queryResult: this.props.list,
+            uniqIngredients: this.props.uniqIngredients
         };
     },
 
@@ -174,14 +177,28 @@ var Recipes = React.createClass({
             console.log(new_list);
     },
 
+    setUniqList: function(uniq){
+      this.setState({
+          uniqIngredients: uniq
+      })
+    },
+
     render() {
         var list = this.state.list;
         var queryResult = this.state.queryResult;
+        var uniqIngredients = this.state.uniqIngredients;
         return (
-
             <div>
                 <h2>Recipes</h2>
-                <RecipeForm onSearch={this.searchIngredient} list={list} queryResult={queryResult}/>
+
+                <RecipeForm onSearch={this.searchIngredient}
+                            list={list}
+                            queryResult={queryResult}/>
+
+                <UniqueIngredient queryResult={queryResult}
+                                  uniqIngredients={uniqIngredients}
+                                  setUniqList={this.setUniqList}/>
+
                 <RecipeMessage queryResult={queryResult}/>
             </div>
         );

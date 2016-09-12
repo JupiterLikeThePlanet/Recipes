@@ -11,10 +11,10 @@ var RecipeMessage = React.createClass({
         // console.log(this.props.list);
         return (
             <div>
+
                 <h4>Recipes</h4>
                 <div>
                     <ul>
-
                         {list.map(function(recipe, i){
 
                                 return <li key={i}>
