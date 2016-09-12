@@ -3,14 +3,20 @@ var React = require('react');
 
 
 var RecipeMessage = React.createClass({
+
+
     render: function () {
         var list = this.props.list;
+        // console.log('props');
+        // console.log(this.props.list);
         return (
             <div>
-                <h2>Recipe Message</h2>
+                <h4>Recipes</h4>
                 <div>
                     <ul>
+
                         {list.map(function(recipe, i){
+
                                 return <li key={i}>
                                     Dish: {[recipe.name]}
                                     <br/>
@@ -18,7 +24,8 @@ var RecipeMessage = React.createClass({
                                     <br/>
                                     Cook Time: {[recipe.cook_time]}
                                     <br/>
-                                    Ingredients: {[recipe.ingredients.map(function(ingredient, i){
+
+                                    Ingredients: {[recipe.ingredients.map(function (ingredient, i) {
 
                                         return <p key={i}> {[ingredient]} </p>
                                     }
@@ -27,6 +34,7 @@ var RecipeMessage = React.createClass({
                                     <br/>
                                     <hr/>
                                 </li>
+
                             }
                         )}
                     </ul>
