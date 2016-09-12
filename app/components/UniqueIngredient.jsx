@@ -21,14 +21,14 @@ var UniqueIngredient = React.createClass({
         };
         console.log('UNIQUE ARRAY');
         console.log(uniq);
-        this.props.setUniqList(uniq);
-        // return uniq;
+        // this.props.setUniqList(uniq);
+        return uniq;
     },
 
     render: function () {
         var queryResult = this.props.queryResult;
-        // var uniq_ingredients = this.sortUniqIngredients(queryResult);
-        var uniq_ingredients = this.props.uniqIngredients
+        var uniq_ingredients = this.sortUniqIngredients(queryResult);
+        // var uniq_ingredients = this.props.uniqIngredients
         console.log('uniq_ingredients props');
         console.log(uniq_ingredients);
         return (
@@ -37,7 +37,7 @@ var UniqueIngredient = React.createClass({
                 <h4>Unique Ingredients</h4>
                     <ul>
                         {uniq_ingredients.map(function (ingredient) {
-                            <li> {ingredient} </li>
+                           return <li> {ingredient} </li>
                         })
                         }
                     </ul>

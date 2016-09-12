@@ -157,16 +157,16 @@ var Recipes = React.createClass({
                     "ingredients": ["Onion", "Oil", "Rice", "Egg", "Soy Sauce", "Sesame Oil", "Chicken", "Carrot", "Peas"]
                 }
             ],
-            queryResult: '',
-            uniqIngredients: '',
+            queryResult: ''
+            // uniqIngredients: ''
         };
     },
 
     getInitialState: function () {
         return {
             list: this.props.list,
-            queryResult: this.props.list,
-            uniqIngredients: this.props.uniqIngredients
+            queryResult: this.props.list
+            // uniqIngredients: this.props.uniqIngredients
         };
     },
 
@@ -177,16 +177,20 @@ var Recipes = React.createClass({
             console.log(new_list);
     },
 
-    setUniqList: function(uniq){
-      this.setState({
-          uniqIngredients: uniq
-      })
-    },
+    // setUniqList: function(uniq){
+    //   this.setState({
+    //       uniqIngredients: uniq
+    //   })
+    // },
+
+// UniqueIngredient queryResult={queryResult}
+//                   uniqIngredients={uniqIngredients}
+//                   setUniqList={this.setUniqList}/
 
     render() {
         var list = this.state.list;
         var queryResult = this.state.queryResult;
-        var uniqIngredients = this.state.uniqIngredients;
+        // var uniqIngredients = this.state.uniqIngredients;
         return (
             <div>
                 <h2>Recipes</h2>
@@ -195,9 +199,7 @@ var Recipes = React.createClass({
                             list={list}
                             queryResult={queryResult}/>
 
-                <UniqueIngredient queryResult={queryResult}
-                                  uniqIngredients={uniqIngredients}
-                                  setUniqList={this.setUniqList}/>
+                <UniqueIngredient queryResult={queryResult}/>
 
                 <RecipeMessage queryResult={queryResult}/>
             </div>
