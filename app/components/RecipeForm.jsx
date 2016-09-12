@@ -6,20 +6,18 @@ var RecipeForm = React.createClass({
 
     onFormSubmit: function(e){
         e.preventDefault();
-
+        var initState = this.props.list;
+        var list = this.props.queryResult
         var ingredient = this.refs.ingredient.value
-        console.log('Search Query');
-        console.log(ingredient)
-        // var new_list = {};
-        // var ingredient_list = list.ingredients
         var new_list = [];
 
         if (ingredient.length > 0) {
             this.refs.ingredient.value = '';
             // var new_list = [];
-            var list = this.props.list;
-            console.log('this.props.list in onFormSubmit before map')
-            console.log(this.props.list);
+            // var list = this.props.list;
+            // var list = this.props.queryResult
+            console.log('this.props.queryResult in onFormSubmit before map')
+            console.log(list);
 
 
             for (var i = 0; i < list.length; i++) {
@@ -38,14 +36,20 @@ var RecipeForm = React.createClass({
                     }
                 }
             }
+            console.log(new_list);
+            this.props.onSearch(new_list);
+        }else{
+            this.props.onSearch(initState);
         };
-        console.log(new_list);
-        this.props.onSearch(new_list);
+
 
         },
 
 
     render: function () {
+        var props_list = this.props.list;
+            console.log('props_list');
+            console.log(props_list);
         return (
             <div>
                 <form onSubmit={this.onFormSubmit}>

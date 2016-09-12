@@ -25492,27 +25492,116 @@
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 	var React = __webpack_require__(1);
 	var RecipeForm = __webpack_require__(225);
 	var RecipeMessage = __webpack_require__(226);
 
-	var Recipes = function (_React$Component) {
-	    _inherits(Recipes, _React$Component);
+	// class Recipes extends React.Component {
+	//     constructor(props) {
+	//         super(props);
+	//         this.state = {
+	//             list: [
+	//                 {
+	//                     "name": "Risotto",
+	//                     "type": "Italian",
+	//                     "cook_time": 60,
+	//                     "ingredients": ["Rice", "Chicken Stock", "Parmesan Cheese", "White Wine", "Butter", "Salt", "Pepper", "Peas"]
+	//                 },
+	//                 {
+	//                     "name": "Enchiladas",
+	//                     "type": "Mexican",
+	//                     "cook_time": 50,
+	//                     "ingredients": ["Tomato Sauce", "Tomato", "Corn Tortillas", "Cheddar Cheese", "Onion", "Olives", "Salt", "Chicken"]
+	//                 },
+	//                 {
+	//                     "name": "Hummus",
+	//                     "type": "Middle Eastern",
+	//                     "cook_time": 10,
+	//                     "ingredients": ["Garlic", "Chickpeas", "Salt", "Tahini", "Hot Sauce"]
+	//                 },
+	//                 {
+	//                     "name": "Pancakes",
+	//                     "type": "Breakfast",
+	//                     "cook_time": 25,
+	//                     "ingredients": ["Milk", "Flour", "Sugar", "Butter", "Baking Powder", "Baking Soda", "Egg", "Salt"]
+	//                 },
+	//                 {
+	//                     "name": "Borscht",
+	//                     "type": "Russian",
+	//                     "cook_time": 75,
+	//                     "ingredients": ["Water", "Potato", "Beets", "Butter", "Onion", "Salt", "Celery", "Carrot", "Cabbage", "Pepper", "Vinegar", "Tomato"]
+	//                 },
+	//                 {
+	//                     "name": "Pierogi",
+	//                     "type": "Polish",
+	//                     "cook_time": 105,
+	//                     "ingredients": ["Butter", "Onion", "Salt", "Pepper", "Potato", "Egg", "Flour", "Baking Powder"]
+	//                 },
+	//                 {
+	//                     "name": "Pupusa",
+	//                     "type": "Salvadoran",
+	//                     "cook_time": 40,
+	//                     "ingredients": ["Masa", "Water", "Queso Fresco"]
+	//                 },
+	//                 {
+	//                     "name": "Fried Rice",
+	//                     "type": "Chinese",
+	//                     "cook_time": 28,
+	//                     "ingredients": ["Onion", "Oil", "Rice", "Egg", "Soy Sauce", "Sesame Oil", "Chicken", "Carrot", "Peas"]
+	//                 }
+	//             ]
+	//         }
+	//     }
+	//
+	//     searchIngredient(ingredient){
+	//         var new_list = [];
+	//         console.log(this.state.list)
+	//         // var names = list.map(function(list_item){ for(var i = 0; i < list.length; i++){return list[i].name}}
+	//
+	//         for (var i = 0; i < list.length; i++) {
+	//             for (var i = 0; i < list.ingredient.length; i++) {
+	//                 if (ingredient === list.ingredient[i]) {
+	//                     return new_list.push(list[i].name)
+	//                 }else{
+	//                     new_list = "Ingredient not found";
+	//                 }
+	//             }
+	//         }
+	//         this.setState({
+	//             list : new_list
+	//         })
+	//         console.log(new_list);
+	//
+	//     }
+	//
+	//
+	//
+	// // {list.map(function(listValue){
+	// //     return <li>{listValue}</li>;
+	// // })}
+	//
+	//     render() {
+	//         var list = this.state.list;
+	//         return (
+	//
+	//             <div>
+	//                 <h2>Recipes</h2>
+	//                 <RecipeForm onSearch={this.searchIngredient}/>
+	//                 <RecipeMessage list={list}/>
+	//             </div>
+	//         );
+	//     };
+	// }
+	//
+	// module.exports = Recipes;
 
-	    function Recipes(props) {
-	        _classCallCheck(this, Recipes);
 
-	        var _this = _possibleConstructorReturn(this, (Recipes.__proto__ || Object.getPrototypeOf(Recipes)).call(this, props));
+	var Recipes = React.createClass({
+	    displayName: 'Recipes',
 
-	        _this.state = {
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
 	            list: [{
 	                "name": "Risotto",
 	                "type": "Italian",
@@ -25553,60 +25642,41 @@
 	                "type": "Chinese",
 	                "cook_time": 28,
 	                "ingredients": ["Onion", "Oil", "Rice", "Egg", "Soy Sauce", "Sesame Oil", "Chicken", "Carrot", "Peas"]
-	            }]
+	            }],
+	            queryResult: ''
 	        };
-	        return _this;
-	    }
+	    },
 
-	    _createClass(Recipes, [{
-	        key: 'sortByIngredient',
-	        value: function sortByIngredient(ingredient) {
-	            var new_list = [];
-	            var list = this.state.list;
-	            // var names = list.map(function(list_item){ for(var i = 0; i < list.length; i++){return list[i].name}}
+	    getInitialState: function getInitialState() {
+	        return {
+	            list: this.props.list,
+	            queryResult: this.props.list
+	        };
+	    },
 
-	            for (var i = 0; i < list.length; i++) {
-	                for (var i = 0; i < list.ingredient.length; i++) {
-	                    if (ingredient === list.ingredient[i]) {
-	                        new_list.push(list[i].name);
-	                    } else {
-	                        new_list = "Ingredient not found";
-	                    }
-	                }
-	            }
-	            this.setState({
-	                list: new_list
-	            });
-	            console.log(new_list);
-	        }
+	    searchIngredient: function searchIngredient(new_list) {
+	        this.setState({
+	            queryResult: new_list
+	        });
+	        console.log(new_list);
+	    },
 
-	        // {list.map(function(listValue){
-	        //     return <li>{listValue}</li>;
-	        // })}
-
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var full_recipe_list = [];
-	            var list_length = this.state.list.length;
-	            var list = this.state.list;
-
-	            return React.createElement(
-	                'div',
+	    render: function render() {
+	        var list = this.state.list;
+	        var queryResult = this.state.queryResult;
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'h2',
 	                null,
-	                React.createElement(
-	                    'h2',
-	                    null,
-	                    'Recipes'
-	                ),
-	                React.createElement(RecipeForm, null),
-	                React.createElement(RecipeMessage, { list: list })
-	            );
-	        }
-	    }]);
-
-	    return Recipes;
-	}(React.Component);
+	                'Recipes'
+	            ),
+	            React.createElement(RecipeForm, { onSearch: this.searchIngredient, list: list, queryResult: queryResult }),
+	            React.createElement(RecipeMessage, { queryResult: queryResult })
+	        );
+	    }
+	});
 
 	module.exports = Recipes;
 
@@ -25621,14 +25691,69 @@
 	var RecipeForm = React.createClass({
 	    displayName: 'RecipeForm',
 
+
+	    onFormSubmit: function onFormSubmit(e) {
+	        e.preventDefault();
+	        var initState = this.props.list;
+	        var list = this.props.queryResult;
+	        var ingredient = this.refs.ingredient.value;
+	        var new_list = [];
+
+	        if (ingredient.length > 0) {
+	            this.refs.ingredient.value = '';
+	            // var new_list = [];
+	            // var list = this.props.list;
+	            // var list = this.props.queryResult
+	            console.log('this.props.queryResult in onFormSubmit before map');
+	            console.log(list);
+
+	            for (var i = 0; i < list.length; i++) {
+	                console.log('first for loop');
+	                for (var x = 0; x < list[i].ingredients.length; x++) {
+	                    console.log('second for loop');
+	                    if (ingredient == list[i].ingredients[x]) {
+	                        console.log('inner most if statement');
+	                        // new_list.push(list[i].name)
+	                        new_list.push(list[i]);
+	                        console.log('if statement new list');
+	                        console.log(new_list);
+	                    } else {
+	                        console.log('hit the else');
+	                        // new_list = "Ingredient not found";
+	                    }
+	                }
+	            }
+	            console.log(new_list);
+	            this.props.onSearch(new_list);
+	        } else {
+	            this.props.onSearch(initState);
+	        };
+	    },
+
 	    render: function render() {
+	        var props_list = this.props.list;
+	        console.log('props_list');
+	        console.log(props_list);
 	        return React.createElement(
 	            'div',
 	            null,
 	            React.createElement(
-	                'h2',
-	                null,
-	                'Recipe Form rendering'
+	                'form',
+	                { onSubmit: this.onFormSubmit },
+	                React.createElement(
+	                    'div',
+	                    null,
+	                    React.createElement('input', { type: 'text', ref: 'ingredient', placeholder: 'Enter query here' })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    null,
+	                    React.createElement(
+	                        'button',
+	                        null,
+	                        'Search'
+	                    )
+	                )
 	            )
 	        );
 	    }
@@ -25647,15 +25772,18 @@
 	var RecipeMessage = React.createClass({
 	    displayName: 'RecipeMessage',
 
+
 	    render: function render() {
-	        var list = this.props.list;
+	        var list = this.props.queryResult;
+	        // console.log('props');
+	        // console.log(this.props.list);
 	        return React.createElement(
 	            'div',
 	            null,
 	            React.createElement(
-	                'h2',
+	                'h4',
 	                null,
-	                'Recipe Message'
+	                'Recipes'
 	            ),
 	            React.createElement(
 	                'div',
@@ -25664,6 +25792,7 @@
 	                    'ul',
 	                    null,
 	                    list.map(function (recipe, i) {
+
 	                        return React.createElement(
 	                            'li',
 	                            { key: i },

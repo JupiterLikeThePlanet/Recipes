@@ -6,7 +6,7 @@ var RecipeMessage = React.createClass({
 
 
     render: function () {
-        var list = this.props.list;
+        var list = this.props.queryResult;
         // console.log('props');
         // console.log(this.props.list);
         return (

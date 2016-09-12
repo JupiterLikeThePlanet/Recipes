@@ -103,7 +103,8 @@ var RecipeMessage = require('RecipeMessage');
 
 
 var Recipes = React.createClass({
-    getInitialState: function () {
+
+    getDefaultProps: function () {
         return {
             list: [
                 {
@@ -154,44 +155,34 @@ var Recipes = React.createClass({
                     "cook_time": 28,
                     "ingredients": ["Onion", "Oil", "Rice", "Egg", "Soy Sauce", "Sesame Oil", "Chicken", "Carrot", "Peas"]
                 }
-            ]
+            ],
+            queryResult: ''
         };
     },
 
+    getInitialState: function () {
+        return {
+            list: this.props.list,
+            queryResult: this.props.list
+        };
+    },
 
     searchIngredient: function (new_list){
-        // var new_list = [];
-        // console.log(this.state.list)
-        // // var names = list.map(function(list_item){ for(var i = 0; i < list.length; i++){return list[i].name}}
-        //
-        // for (var i = 0; i < list.length; i++) {
-        //     for (var i = 0; i < list.ingredient.length; i++) {
-        //         if (ingredient === list.ingredient[i]) {
-        //             return new_list.push(list[i].name)
-        //         }else{
-        //             new_list = "Ingredient not found";
-        //         }
-        //     }
-        // }
-        // this.setState({
-        //     list : new_list
-        // })
-        // console.log(new_list);
-        this.setState({
-            list: new_list
-        });
-        console.log(new_list);
-
+            this.setState({
+                queryResult: new_list
+            });
+            console.log(new_list);
     },
 
     render() {
         var list = this.state.list;
+        var queryResult = this.state.queryResult;
         return (
 
             <div>
                 <h2>Recipes</h2>
-                <RecipeForm onSearch={this.searchIngredient} list={list}/>
-                <RecipeMessage list={list}/>
+                <RecipeForm onSearch={this.searchIngredient} list={list} queryResult={queryResult}/>
+                <RecipeMessage queryResult={queryResult}/>
             </div>
         );
     }
