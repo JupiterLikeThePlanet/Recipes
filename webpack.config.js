@@ -15,7 +15,7 @@ module.exports = {
             UniqueIngredient: 'app/components/UniqueIngredient.jsx',
             About: 'app/components/About.jsx',
             Instructions: 'app/components/Instructions.jsx',
-            recipe_object: 'data_science_test/recipes.json'
+            Dropdown: 'app/components/Dropdown.jsx'
         },
         extensions: ['', '.js', '.jsx']
     },
