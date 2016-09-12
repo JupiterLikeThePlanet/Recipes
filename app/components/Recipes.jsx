@@ -74,6 +74,7 @@ var Recipes = React.createClass({
 
     searchIngredient: function (new_list){
             this.setState({
+                list: this.props.list,
                 queryResult: new_list
             });
             console.log(new_list);
@@ -88,10 +89,7 @@ var Recipes = React.createClass({
 // UniqueIngredient queryResult={queryResult}
 //                   uniqIngredients={uniqIngredients}
 //                   setUniqList={this.setUniqList}/
-// Dropdown options={options}
-          // onChange={this._onSelect}
-          // value={defaultOption}
-          // placeholder="Select an ingredient"/
+
 
     render() {
         var list = this.state.list;
@@ -101,11 +99,10 @@ var Recipes = React.createClass({
             <div>
                 <h2>Recipes</h2>
 
-
-
-                <RecipeForm onSearch={this.searchIngredient}
-                            list={list}
-                            queryResult={queryResult}/>
+                <Dropdown onChange={this.searchIngredient}
+                          list={list}
+                          queryResult={queryResult}
+                          placeholder="Select an ingredient"/>
 
                 <UniqueIngredient queryResult={queryResult}/>
 

@@ -58,8 +58,8 @@
 
 	var Main = __webpack_require__(222);
 	var Recipes = __webpack_require__(224);
-	var About = __webpack_require__(227);
-	var Instructions = __webpack_require__(228);
+	var About = __webpack_require__(229);
+	var Instructions = __webpack_require__(230);
 
 	ReactDOM.render(React.createElement(
 	    Router,
@@ -25495,106 +25495,8 @@
 	var React = __webpack_require__(1);
 	var RecipeForm = __webpack_require__(225);
 	var RecipeMessage = __webpack_require__(226);
-
-	// class Recipes extends React.Component {
-	//     constructor(props) {
-	//         super(props);
-	//         this.state = {
-	//             list: [
-	//                 {
-	//                     "name": "Risotto",
-	//                     "type": "Italian",
-	//                     "cook_time": 60,
-	//                     "ingredients": ["Rice", "Chicken Stock", "Parmesan Cheese", "White Wine", "Butter", "Salt", "Pepper", "Peas"]
-	//                 },
-	//                 {
-	//                     "name": "Enchiladas",
-	//                     "type": "Mexican",
-	//                     "cook_time": 50,
-	//                     "ingredients": ["Tomato Sauce", "Tomato", "Corn Tortillas", "Cheddar Cheese", "Onion", "Olives", "Salt", "Chicken"]
-	//                 },
-	//                 {
-	//                     "name": "Hummus",
-	//                     "type": "Middle Eastern",
-	//                     "cook_time": 10,
-	//                     "ingredients": ["Garlic", "Chickpeas", "Salt", "Tahini", "Hot Sauce"]
-	//                 },
-	//                 {
-	//                     "name": "Pancakes",
-	//                     "type": "Breakfast",
-	//                     "cook_time": 25,
-	//                     "ingredients": ["Milk", "Flour", "Sugar", "Butter", "Baking Powder", "Baking Soda", "Egg", "Salt"]
-	//                 },
-	//                 {
-	//                     "name": "Borscht",
-	//                     "type": "Russian",
-	//                     "cook_time": 75,
-	//                     "ingredients": ["Water", "Potato", "Beets", "Butter", "Onion", "Salt", "Celery", "Carrot", "Cabbage", "Pepper", "Vinegar", "Tomato"]
-	//                 },
-	//                 {
-	//                     "name": "Pierogi",
-	//                     "type": "Polish",
-	//                     "cook_time": 105,
-	//                     "ingredients": ["Butter", "Onion", "Salt", "Pepper", "Potato", "Egg", "Flour", "Baking Powder"]
-	//                 },
-	//                 {
-	//                     "name": "Pupusa",
-	//                     "type": "Salvadoran",
-	//                     "cook_time": 40,
-	//                     "ingredients": ["Masa", "Water", "Queso Fresco"]
-	//                 },
-	//                 {
-	//                     "name": "Fried Rice",
-	//                     "type": "Chinese",
-	//                     "cook_time": 28,
-	//                     "ingredients": ["Onion", "Oil", "Rice", "Egg", "Soy Sauce", "Sesame Oil", "Chicken", "Carrot", "Peas"]
-	//                 }
-	//             ]
-	//         }
-	//     }
-	//
-	//     searchIngredient(ingredient){
-	//         var new_list = [];
-	//         console.log(this.state.list)
-	//         // var names = list.map(function(list_item){ for(var i = 0; i < list.length; i++){return list[i].name}}
-	//
-	//         for (var i = 0; i < list.length; i++) {
-	//             for (var i = 0; i < list.ingredient.length; i++) {
-	//                 if (ingredient === list.ingredient[i]) {
-	//                     return new_list.push(list[i].name)
-	//                 }else{
-	//                     new_list = "Ingredient not found";
-	//                 }
-	//             }
-	//         }
-	//         this.setState({
-	//             list : new_list
-	//         })
-	//         console.log(new_list);
-	//
-	//     }
-	//
-	//
-	//
-	// // {list.map(function(listValue){
-	// //     return <li>{listValue}</li>;
-	// // })}
-	//
-	//     render() {
-	//         var list = this.state.list;
-	//         return (
-	//
-	//             <div>
-	//                 <h2>Recipes</h2>
-	//                 <RecipeForm onSearch={this.searchIngredient}/>
-	//                 <RecipeMessage list={list}/>
-	//             </div>
-	//         );
-	//     };
-	// }
-	//
-	// module.exports = Recipes;
-
+	var UniqueIngredient = __webpack_require__(227);
+	var Dropdown = __webpack_require__(228);
 
 	var Recipes = React.createClass({
 	    displayName: 'Recipes',
@@ -25644,6 +25546,7 @@
 	                "ingredients": ["Onion", "Oil", "Rice", "Egg", "Soy Sauce", "Sesame Oil", "Chicken", "Carrot", "Peas"]
 	            }],
 	            queryResult: ''
+	            // uniqIngredients: ''
 	        };
 	    },
 
@@ -25651,19 +25554,33 @@
 	        return {
 	            list: this.props.list,
 	            queryResult: this.props.list
+	            // uniqIngredients: this.props.uniqIngredients
 	        };
 	    },
 
 	    searchIngredient: function searchIngredient(new_list) {
 	        this.setState({
+	            list: this.props.list,
 	            queryResult: new_list
 	        });
 	        console.log(new_list);
 	    },
 
+	    // setUniqList: function(uniq){
+	    //   this.setState({
+	    //       uniqIngredients: uniq
+	    //   })
+	    // },
+
+	    // UniqueIngredient queryResult={queryResult}
+	    //                   uniqIngredients={uniqIngredients}
+	    //                   setUniqList={this.setUniqList}/
+
+
 	    render: function render() {
 	        var list = this.state.list;
 	        var queryResult = this.state.queryResult;
+	        // var uniqIngredients = this.state.uniqIngredients;
 	        return React.createElement(
 	            'div',
 	            null,
@@ -25672,7 +25589,11 @@
 	                null,
 	                'Recipes'
 	            ),
-	            React.createElement(RecipeForm, { onSearch: this.searchIngredient, list: list, queryResult: queryResult }),
+	            React.createElement(Dropdown, { onChange: this.searchIngredient,
+	                list: list,
+	                queryResult: queryResult,
+	                placeholder: 'Select an ingredient' }),
+	            React.createElement(UniqueIngredient, { queryResult: queryResult }),
 	            React.createElement(RecipeMessage, { queryResult: queryResult })
 	        );
 	    }
@@ -25708,15 +25629,14 @@
 	            console.log(list);
 
 	            for (var i = 0; i < list.length; i++) {
-	                console.log('first for loop');
+	                // console.log('first for loop');
 	                for (var x = 0; x < list[i].ingredients.length; x++) {
-	                    console.log('second for loop');
+	                    // console.log('second for loop');
 	                    if (ingredient == list[i].ingredients[x]) {
-	                        console.log('inner most if statement');
-	                        // new_list.push(list[i].name)
+	                        // console.log('inner most if statement');
 	                        new_list.push(list[i]);
-	                        console.log('if statement new list');
-	                        console.log(new_list);
+	                        // console.log('if statement new list');
+	                        // console.log(new_list);
 	                    } else {
 	                        console.log('hit the else');
 	                        // new_list = "Ingredient not found";
@@ -25751,7 +25671,7 @@
 	                    React.createElement(
 	                        'button',
 	                        null,
-	                        'Search'
+	                        'Search Ingredient'
 	                    )
 	                )
 	            )
@@ -25836,6 +25756,181 @@
 
 	var React = __webpack_require__(1);
 
+	var UniqueIngredient = React.createClass({
+	    displayName: 'UniqueIngredient',
+
+
+	    // alphabetical: function (a, b) {
+	    //     var A = a.toLowerCase();
+	    //     var B = b.toLowerCase();
+	    //     if (A < B){
+	    //         return -1;
+	    //     }else if (A > B){
+	    //         return  1;
+	    //     }else{
+	    //         return 0;
+	    //     }
+	    // },
+
+	    sortUniqIngredients: function sortUniqIngredients(queryResult) {
+	        var ingredients_array = [];
+
+	        for (var i = 0; i < queryResult.length; i++) {
+	            console.log('first UNIQ for loop');
+	            ingredients_array.push(queryResult[i].ingredients);
+	        };
+
+	        var flat_ingredients_array = [].concat.apply([], ingredients_array);
+	        var uniq = [];
+	        var hash = {};
+	        for (var i = 0, l = flat_ingredients_array.length; i < l; ++i) {
+	            if (!hash.hasOwnProperty(flat_ingredients_array[i])) {
+	                uniq.push(flat_ingredients_array[i]);
+	                hash[flat_ingredients_array[i]] = 1;
+	            }
+	        };
+
+	        uniq.sort(function (a, b) {
+	            var A = a.toLowerCase();
+	            var B = b.toLowerCase();
+	            return A < B ? -1 : A > B ? 1 : 0;
+	        });
+
+	        console.log('UNIQUE ARRAY');
+	        console.log(uniq);
+	        // this.props.setUniqList(uniq);
+	        return uniq;
+	    },
+
+	    render: function render() {
+	        var queryResult = this.props.queryResult;
+	        var uniq_ingredients = this.sortUniqIngredients(queryResult);
+	        // var uniq_ingredients = this.props.uniqIngredients
+
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement('hr', null),
+	            React.createElement(
+	                'h4',
+	                null,
+	                'Unique Ingredients'
+	            ),
+	            React.createElement(
+	                'ul',
+	                null,
+	                uniq_ingredients.map(function (ingredient) {
+	                    return React.createElement(
+	                        'li',
+	                        null,
+	                        ' ',
+	                        ingredient,
+	                        ' '
+	                    );
+	                })
+	            ),
+	            React.createElement('hr', null)
+	        );
+	    }
+	});
+
+	module.exports = UniqueIngredient;
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	// var Dropdown = require('react-dropdown');
+
+	var options = [{ value: "Baking Powder", label: "Baking Powder" }, { value: "Baking Soda", label: "Baking Soda" }, { value: "Beets", label: "Beets" }, { value: "Butter", label: "Butter" }, { value: "Cabbage", label: "Cabbage" }, { value: "Carrot", label: "Carrot" }, { value: "Celery", label: "Celery" }, { value: "Cheddar Cheese", label: "Cheddar Cheese" }, { value: "Chicken", label: "Chicken" }, { value: "Chicken Stock", label: "Chicken Stock" }, { value: "Chickpeas", label: "Chickpeas" }, { value: "Corn Tortillas", label: "Corn Tortillas" }, { value: "Egg", label: "Egg" }, { value: "Flour", label: "Flour" }, { value: "Garlic", label: "Garlic" }, { value: "Hot Sauce", label: "Hot Sauce" }, { value: "Masa", label: "Masa" }, { value: "Milk", label: "Milk" }, { value: "Oil", label: "Oil" }, { value: "Olives", label: "Olives" }, { value: "Onion", label: "Onion" }, { value: "Parmesan Cheese", label: "Parmesan Cheese" }, { value: "Peas", label: "Peas" }, { value: "Pepper", label: "Pepper" }, { value: "Potato", label: "Potato" }, { value: "Queso Fresco", label: "Queso Fresco" }, { value: "Rice", label: "Rice" }, { value: "Salt", label: "Salt" }, { value: "Sesame Oil", label: "Sesame Oil" }, { value: "Soy Sauce", label: "Soy Sauce" }, { value: "Sugar", label: "Sugar" }, { value: "Tahini", label: "Tahini" }, { value: "Tomato", label: "Tomato" }, { value: "Tomato Sauce", label: "Tomato Sauce" }, { value: "Vinegar", label: "Vinegar" }, { value: "Water", label: "Water" }, { value: "White Wine", label: "White Wine" }];
+
+	var Dropdown = React.createClass({
+	    displayName: "Dropdown",
+
+
+	    selectIngredient: function selectIngredient(e) {
+	        var initState = this.props.list;
+	        var ingredient = e.target.value;
+	        // var list = this.props.queryResult
+	        // var new_list = [];
+
+	        if (ingredient.length > 0) {
+	            var list = this.props.queryResult;
+	            //reset initial state here
+	            list = initState;
+	            var new_list = [];
+	            console.log('this.props.queryResult in selectIngredient before map');
+	            console.log(list);
+
+	            for (var i = 0; i < list.length; i++) {
+	                // console.log('first for loop');
+	                for (var x = 0; x < list[i].ingredients.length; x++) {
+	                    // console.log('second for loop');
+	                    if (ingredient == list[i].ingredients[x]) {
+	                        // console.log('inner most if statement');
+	                        new_list.push(list[i]);
+	                        // console.log('if statement new list');
+	                        // console.log(new_list);
+	                    }
+	                }
+	            }
+	            console.log(new_list);
+	            this.props.onChange(new_list);
+	        } else {
+	            this.props.onChange(initState);
+	        };
+	    },
+
+	    render: function render() {
+
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "h2",
+	                null,
+	                "Select Ingredient"
+	            ),
+	            React.createElement(
+	                "div",
+	                null,
+	                React.createElement(
+	                    "select",
+	                    { id: "lang", onChange: this.selectIngredient, ref: "ingredient" },
+	                    React.createElement(
+	                        "option",
+	                        { value: "" },
+	                        "select"
+	                    ),
+	                    options.map(function (ingredient) {
+
+	                        return React.createElement(
+	                            "option",
+	                            { value: ingredient.value },
+	                            " ",
+	                            ingredient.label,
+	                            " "
+	                        );
+	                    })
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Dropdown;
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
 	var About = React.createClass({
 	    displayName: 'About',
 
@@ -25855,7 +25950,7 @@
 	module.exports = About;
 
 /***/ },
-/* 228 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
