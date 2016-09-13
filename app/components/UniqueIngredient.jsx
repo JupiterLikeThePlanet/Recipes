@@ -2,23 +2,10 @@ var React = require('react');
 
 var UniqueIngredient = React.createClass({
 
-    // alphabetical: function (a, b) {
-    //     var A = a.toLowerCase();
-    //     var B = b.toLowerCase();
-    //     if (A < B){
-    //         return -1;
-    //     }else if (A > B){
-    //         return  1;
-    //     }else{
-    //         return 0;
-    //     }
-    // },
-
     sortUniqIngredients: function(queryResult) {
         var ingredients_array = [];
 
         for (var i = 0; i < queryResult.length; i++) {
-            console.log('first UNIQ for loop');
             ingredients_array.push(queryResult[i].ingredients)
         };
 
@@ -38,21 +25,18 @@ var UniqueIngredient = React.createClass({
             return (A < B) ? -1 : (A > B) ? 1 : 0;
         });
 
-        console.log('UNIQUE ARRAY');
-        console.log(uniq);
-        // this.props.setUniqList(uniq);
         return uniq;
     },
-
-
 
 
 render: function () {
         var queryResult = this.props.queryResult;
         var uniq_ingredients = this.sortUniqIngredients(queryResult);
-        // var uniq_ingredients = this.props.uniqIngredients
+        console.log('QR from Uniq');
+        console.log(queryResult);
 
         return (
+
             <div>
                 <hr/>
                 <h4>Unique Ingredients</h4>

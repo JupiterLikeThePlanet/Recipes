@@ -59,42 +59,39 @@ var Recipes = React.createClass({
                     "ingredients": ["Onion", "Oil", "Rice", "Egg", "Soy Sauce", "Sesame Oil", "Chicken", "Carrot", "Peas"]
                 }
             ],
-            queryResult: ''
-            // uniqIngredients: ''
+            queryResult: '',
+            checked_array: ''
         };
     },
 
     getInitialState: function () {
         return {
             list: this.props.list,
-            queryResult: this.props.list
-            // uniqIngredients: this.props.uniqIngredients
+            queryResult: this.props.list,
+            checked_array: ''
         };
     },
 
     searchIngredient: function (new_list){
             this.setState({
-                list: this.props.list,
                 queryResult: new_list
             });
             console.log(new_list);
     },
 
-    // setUniqList: function(uniq){
-    //   this.setState({
-    //       uniqIngredients: uniq
-    //   })
-    // },
-
-// UniqueIngredient queryResult={queryResult}
-//                   uniqIngredients={uniqIngredients}
-//                   setUniqList={this.setUniqList}/
+    handleCheck: function(checked_list){
+        console.log("handleCheck" + checked_list);
+        this.setState({
+            checked_array: checked_list
+        })
+    },
 
 
     render() {
         var list = this.state.list;
         var queryResult = this.state.queryResult;
-        // var uniqIngredients = this.state.uniqIngredients;
+        var checked_array = this.state.checked_array;
+
         return (
             <div>
                 <h2>Recipes</h2>
@@ -104,9 +101,11 @@ var Recipes = React.createClass({
                           queryResult={queryResult}
                           placeholder="Select an ingredient"/>
 
-                <UniqueIngredient queryResult={queryResult}/>
+                <UniqueIngredient queryResult={queryResult} />
 
-                <RecipeMessage queryResult={queryResult}/>
+                <RecipeMessage queryResult={queryResult}
+                               onCheck={this.handleCheck}/>
+
             </div>
         );
     }

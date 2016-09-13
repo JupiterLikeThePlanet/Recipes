@@ -1,5 +1,4 @@
 var React = require('react');
-// var Dropdown = require('react-dropdown');
 
 const options =
     [
@@ -55,22 +54,14 @@ var Dropdown = React.createClass({
             //reset initial state here
             list = initState
             var new_list = [];
-            console.log('this.props.queryResult in selectIngredient before map')
-            console.log(list);
 
             for (var i = 0; i < list.length; i++) {
-                // console.log('first for loop');
                 for (var x = 0; x < list[i].ingredients.length; x++) {
-                    // console.log('second for loop');
                     if (ingredient == list[i].ingredients[x]) {
-                        // console.log('inner most if statement');
                         new_list.push(list[i])
-                        // console.log('if statement new list');
-                        // console.log(new_list);
                     }
                 }
             }
-            console.log(new_list);
             this.props.onChange(new_list);
         }else{
             this.props.onChange(initState);
@@ -82,7 +73,7 @@ var Dropdown = React.createClass({
 
         return (
             <div>
-                <h2>Select Ingredient</h2>
+                <h2>Filter by Ingredient</h2>
                 <div>
                     <select id="lang" onChange={this.selectIngredient} ref="ingredient">
                         <option value="">select</option>

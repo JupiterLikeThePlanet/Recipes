@@ -13,8 +13,9 @@ Using the provided JSON data representing a collection of meal recipes, create a
 
 * Add checkboxes to allow selection of multiple recipes.
 * Show an alphabetically ordered list of distinct ingredients for the selected recipes. This should update as recipes are selected / unselected.
-* Persist the selections locally and regenerate the view on page refresh.
 
+
+* Persist the selections locally and regenerate the view on page refresh.
 * In a README note any required setup to be able to run the app, such as modifying hosts file, etc.
 
 ====================
