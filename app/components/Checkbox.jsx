@@ -36,7 +36,7 @@ var Checkbox = React.createClass({
         console.log("Recipe: " + recipe + " is set to " + this.state.isChecked);
         return (
             <div>
-                <div>
+                <div className="pull-right">
                     <input type="checkbox"
                            value={this.props.recipe}
                            checked={this.state.isChecked}

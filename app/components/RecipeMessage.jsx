@@ -9,43 +9,43 @@ var RecipeMessage = React.createClass({
         console.log("boxCheck: "+ arr);
         this.props.onCheck(arr);
     },
+// className="row">list-group-item-action list-group-item-success
+
 
     render: function () {
         var list = this.props.queryResult;
         var boxCheck = this.boxCheck;
 
         return (
-            <div>
+            <div >
 
                 <h4>Recipes</h4>
-                <div>
+                <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 fluid">
+                    <div className="row">
+                        <ul className="col-md-12 fluid list-group inline">
+                                {list.map(function(recipe, i){
+                                        return <li className="list-group-item" key={i}>
+                                            <Checkbox recipe={recipe} handleCheckboxChange={boxCheck}/>
+                                            Dish: {[recipe.name]}
+                                            <br/>
+                                            Type: {[recipe.type]}
+                                            <br/>
+                                            Cook Time: {[recipe.cook_time]}
+                                            <br/>
 
-                    <ul>
-                        {list.map(function(recipe, i){
-                                return <li key={i}>
-                                    <Checkbox recipe={recipe} handleCheckboxChange={boxCheck}/>
-                                    Dish: {[recipe.name]}
-                                    <br/>
-                                    Type: {[recipe.type]}
-                                    <br/>
-                                    Cook Time: {[recipe.cook_time]}
-                                    <br/>
+                                            Ingredients: {[recipe.ingredients.map(function (ingredient, i) {
 
-                                    Ingredients: {[recipe.ingredients.map(function (ingredient, i) {
-
-                                        return <p key={i}> {[ingredient]} </p>
+                                                return <p key={i}> {[ingredient]} </p>
+                                            }
+                                        )]}
+                                        </li>
                                     }
-                                )]}
-
-                                    <br/>
-                                    <hr/>
-                                </li>
-
-                            }
-                        )}
-                    </ul>
+                                )}
+                        </ul>
+                    </div>
                 </div>
             </div>
+
         );
     }
 });

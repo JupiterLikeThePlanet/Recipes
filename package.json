@@ -9,7 +9,7 @@
   "author": "Jupiter Baudot",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.4",
+    "bootstrap": "^3.3.6",
     "express": "^4.13.4",
     "node-sass": "^3.9.3",
     "react": "^0.14.7",

@@ -58,8 +58,8 @@
 
 	var Main = __webpack_require__(222);
 	var Recipes = __webpack_require__(224);
-	var About = __webpack_require__(230);
-	var Instructions = __webpack_require__(231);
+	var About = __webpack_require__(228);
+	var Instructions = __webpack_require__(229);
 
 	ReactDOM.render(React.createElement(
 	    Router,
@@ -25433,7 +25433,7 @@
 	    render: function render() {
 	        return React.createElement(
 	            'div',
-	            null,
+	            { className: 'container' },
 	            React.createElement(Nav, null),
 	            this.props.children
 	        );
@@ -25463,23 +25463,34 @@
 	            'div',
 	            null,
 	            React.createElement(
-	                Link,
-	                { to: '/' },
-	                'Recipes'
-	            ),
-	            React.createElement('br', null),
-	            React.createElement(
-	                Link,
-	                { to: 'about' },
-	                'About'
-	            ),
-	            React.createElement('br', null),
-	            React.createElement(
-	                Link,
-	                { to: 'instructions' },
-	                'Instructions'
-	            ),
-	            React.createElement('hr', null)
+	                'nav',
+	                { className: 'navbar navbar-default' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'container-fluid' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4' },
+	                        React.createElement(
+	                            Link,
+	                            { to: '/' },
+	                            'Recipes '
+	                        ),
+	                        '/',
+	                        React.createElement(
+	                            Link,
+	                            { to: 'about' },
+	                            ' About '
+	                        ),
+	                        '/',
+	                        React.createElement(
+	                            Link,
+	                            { to: 'instructions' },
+	                            ' Instructions'
+	                        )
+	                    )
+	                )
+	            )
 	        );
 	    }
 	});
@@ -25493,9 +25504,9 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var RecipeMessage = __webpack_require__(226);
-	var UniqueIngredient = __webpack_require__(228);
-	var Dropdown = __webpack_require__(229);
+	var RecipeMessage = __webpack_require__(225);
+	var UniqueIngredient = __webpack_require__(226);
+	var Dropdown = __webpack_require__(227);
 
 	var Recipes = React.createClass({
 	    displayName: 'Recipes',
@@ -25599,14 +25610,13 @@
 	module.exports = Recipes;
 
 /***/ },
-/* 225 */,
-/* 226 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Checkbox = __webpack_require__(227);
+	var Checkbox = __webpack_require__(230);
 
 	var RecipeMessage = React.createClass({
 	    displayName: 'RecipeMessage',
@@ -25616,6 +25626,8 @@
 	        console.log("boxCheck: " + arr);
 	        this.props.onCheck(arr);
 	    },
+	    // className="row">list-group-item-action list-group-item-success
+
 
 	    render: function render() {
 	        var list = this.props.queryResult;
@@ -25631,39 +25643,41 @@
 	            ),
 	            React.createElement(
 	                'div',
-	                null,
+	                { className: 'col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 fluid' },
 	                React.createElement(
-	                    'ul',
-	                    null,
-	                    list.map(function (recipe, i) {
-	                        return React.createElement(
-	                            'li',
-	                            { key: i },
-	                            React.createElement(Checkbox, { recipe: recipe, handleCheckboxChange: boxCheck }),
-	                            'Dish: ',
-	                            [recipe.name],
-	                            React.createElement('br', null),
-	                            'Type: ',
-	                            [recipe.type],
-	                            React.createElement('br', null),
-	                            'Cook Time: ',
-	                            [recipe.cook_time],
-	                            React.createElement('br', null),
-	                            'Ingredients: ',
-	                            [recipe.ingredients.map(function (ingredient, i) {
+	                    'div',
+	                    { className: 'row' },
+	                    React.createElement(
+	                        'ul',
+	                        { className: 'col-md-12 fluid list-group inline' },
+	                        list.map(function (recipe, i) {
+	                            return React.createElement(
+	                                'li',
+	                                { className: 'list-group-item', key: i },
+	                                React.createElement(Checkbox, { recipe: recipe, handleCheckboxChange: boxCheck }),
+	                                'Dish: ',
+	                                [recipe.name],
+	                                React.createElement('br', null),
+	                                'Type: ',
+	                                [recipe.type],
+	                                React.createElement('br', null),
+	                                'Cook Time: ',
+	                                [recipe.cook_time],
+	                                React.createElement('br', null),
+	                                'Ingredients: ',
+	                                [recipe.ingredients.map(function (ingredient, i) {
 
-	                                return React.createElement(
-	                                    'p',
-	                                    { key: i },
-	                                    ' ',
-	                                    [ingredient],
-	                                    ' '
-	                                );
-	                            })],
-	                            React.createElement('br', null),
-	                            React.createElement('hr', null)
-	                        );
-	                    })
+	                                    return React.createElement(
+	                                        'p',
+	                                        { key: i },
+	                                        ' ',
+	                                        [ingredient],
+	                                        ' '
+	                                    );
+	                                })]
+	                            );
+	                        })
+	                    )
 	                )
 	            )
 	        );
@@ -25673,67 +25687,7 @@
 	module.exports = RecipeMessage;
 
 /***/ },
-/* 227 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var checked_array = [];
-
-	var Checkbox = React.createClass({
-	    displayName: 'Checkbox',
-
-	    getInitialState: function getInitialState() {
-	        return {
-	            isChecked: false
-	        };
-	    },
-
-	    toggleCheckbox: function toggleCheckbox() {
-
-	        this.setState({
-	            isChecked: !this.state.isChecked
-	        });
-
-	        // var recipe = JSON.stringify(this.props.recipe, null, 4);
-	        var recipe = this.props.recipe;
-	        console.log(recipe);
-
-	        if (!this.state.isChecked === true) {
-	            checked_array.push(recipe);
-	            console.log('New Pushed Array: ' + checked_array);
-	        } else {
-	            checked_array.pop(recipe) || console.log('not in there');
-	            console.log('New popped Array: ' + checked_array);
-	        };
-
-	        this.props.handleCheckboxChange(checked_array);
-	    },
-
-	    render: function render() {
-	        var recipe = this.props.recipe.name;
-	        console.log("Recipe: " + recipe + " is set to " + this.state.isChecked);
-	        return React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	                'div',
-	                null,
-	                React.createElement('input', { type: 'checkbox',
-	                    value: this.props.recipe,
-	                    checked: this.state.isChecked,
-	                    onChange: this.toggleCheckbox })
-	            )
-	        );
-	    }
-	});
-
-	module.exports = Checkbox;
-
-/***/ },
-/* 228 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25806,7 +25760,7 @@
 	module.exports = UniqueIngredient;
 
 /***/ },
-/* 229 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25889,7 +25843,7 @@
 	module.exports = Dropdown;
 
 /***/ },
-/* 230 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25930,7 +25884,7 @@
 	module.exports = About;
 
 /***/ },
-/* 231 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25978,6 +25932,66 @@
 	});
 
 	module.exports = Instructions;
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var checked_array = [];
+
+	var Checkbox = React.createClass({
+	    displayName: 'Checkbox',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            isChecked: false
+	        };
+	    },
+
+	    toggleCheckbox: function toggleCheckbox() {
+
+	        this.setState({
+	            isChecked: !this.state.isChecked
+	        });
+
+	        // var recipe = JSON.stringify(this.props.recipe, null, 4);
+	        var recipe = this.props.recipe;
+	        console.log(recipe);
+
+	        if (!this.state.isChecked === true) {
+	            checked_array.push(recipe);
+	            console.log('New Pushed Array: ' + checked_array);
+	        } else {
+	            checked_array.pop(recipe) || console.log('not in there');
+	            console.log('New popped Array: ' + checked_array);
+	        };
+
+	        this.props.handleCheckboxChange(checked_array);
+	    },
+
+	    render: function render() {
+	        var recipe = this.props.recipe.name;
+	        console.log("Recipe: " + recipe + " is set to " + this.state.isChecked);
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'div',
+	                { className: 'pull-right' },
+	                React.createElement('input', { type: 'checkbox',
+	                    value: this.props.recipe,
+	                    checked: this.state.isChecked,
+	                    onChange: this.toggleCheckbox })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Checkbox;
 
 /***/ }
 /******/ ]);
