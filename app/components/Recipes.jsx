@@ -91,6 +91,7 @@ var Recipes = React.createClass({
         var list = this.state.list;
         var queryResult = this.state.queryResult;
         var checked_array = this.state.checked_array;
+        console.log('CHECKED_ARRAY in RECIPE render: ' + checked_array)
 
         return (
             <div>
@@ -101,7 +102,7 @@ var Recipes = React.createClass({
                           queryResult={queryResult}
                           placeholder="Select an ingredient"/>
 
-                <UniqueIngredient queryResult={queryResult} />
+                <UniqueIngredient queryResult={checked_array} />
 
                 <RecipeMessage queryResult={queryResult}
                                onCheck={this.handleCheck}/>

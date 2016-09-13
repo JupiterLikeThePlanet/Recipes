@@ -19,7 +19,8 @@ var Checkbox = React.createClass({
         // console.log("THIS IS STATE CHECK");
         // console.log(!this.state.isChecked);
 
-        var recipe = JSON.stringify(this.props.recipe, null, 4);
+        // var recipe = JSON.stringify(this.props.recipe, null, 4);
+        var recipe = this.props.recipe
         console.log(recipe);
 
         if (!this.state.isChecked === true) {

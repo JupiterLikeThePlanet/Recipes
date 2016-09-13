@@ -58,8 +58,8 @@
 
 	var Main = __webpack_require__(222);
 	var Recipes = __webpack_require__(224);
-	var About = __webpack_require__(229);
-	var Instructions = __webpack_require__(230);
+	var About = __webpack_require__(230);
+	var Instructions = __webpack_require__(231);
 
 	ReactDOM.render(React.createElement(
 	    Router,
@@ -25495,8 +25495,8 @@
 	var React = __webpack_require__(1);
 	var RecipeForm = __webpack_require__(225);
 	var RecipeMessage = __webpack_require__(226);
-	var UniqueIngredient = __webpack_require__(227);
-	var Dropdown = __webpack_require__(228);
+	var UniqueIngredient = __webpack_require__(228);
+	var Dropdown = __webpack_require__(229);
 
 	var Recipes = React.createClass({
 	    displayName: 'Recipes',
@@ -25576,6 +25576,7 @@
 	        var list = this.state.list;
 	        var queryResult = this.state.queryResult;
 	        var checked_array = this.state.checked_array;
+	        console.log('CHECKED_ARRAY in RECIPE render: ' + checked_array);
 
 	        return React.createElement(
 	            'div',
@@ -25589,7 +25590,7 @@
 	                list: list,
 	                queryResult: queryResult,
 	                placeholder: 'Select an ingredient' }),
-	            React.createElement(UniqueIngredient, { queryResult: queryResult }),
+	            React.createElement(UniqueIngredient, { queryResult: checked_array }),
 	            React.createElement(RecipeMessage, { queryResult: queryResult,
 	                onCheck: this.handleCheck })
 	        );
@@ -25685,8 +25686,8 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Checkbox = __webpack_require__(231);
-	var UniqueIngredient = __webpack_require__(227);
+	var Checkbox = __webpack_require__(227);
+	var UniqueIngredient = __webpack_require__(228);
 
 	var RecipeMessage = React.createClass({
 	    displayName: 'RecipeMessage',
@@ -25760,6 +25761,79 @@
 
 	var React = __webpack_require__(1);
 
+	var checked_array = [];
+
+	var Checkbox = React.createClass({
+	    displayName: 'Checkbox',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            isChecked: false
+	            // checked_boxes: checked_array
+	        };
+	    },
+
+	    toggleCheckbox: function toggleCheckbox() {
+	        // console.log("Recipe Value: " + recipe);
+
+	        this.setState({
+	            isChecked: !this.state.isChecked
+	        });
+	        // console.log("THIS IS STATE CHECK");
+	        // console.log(!this.state.isChecked);
+
+	        // var recipe = JSON.stringify(this.props.recipe, null, 4);
+	        var recipe = this.props.recipe;
+	        console.log(recipe);
+
+	        if (!this.state.isChecked === true) {
+	            checked_array.push(recipe);
+	            console.log('New Pushed Array: ' + checked_array);
+	        } else {
+	            checked_array.pop(recipe) || console.log('not in there');
+	            console.log('New popped Array: ' + checked_array);
+	        };
+	        // var update_array = checked_array
+	        // this.props.onToggle(checked_array);
+	        // this.setState({
+	        //     checked_boxes: update_array
+	        // })
+
+	        this.props.handleCheckboxChange(checked_array);
+	    },
+
+	    // onChange={this.handleChange}
+
+	    render: function render() {
+	        var recipe = this.props.recipe.name;
+	        // var ref_check = this.refs.check.value;
+	        // console.log('this.refs.state.checked_boxes : ' + ref_check);
+	        console.log("Recipe: " + recipe + " is set to " + this.state.isChecked);
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'div',
+	                null,
+	                React.createElement('input', { type: 'checkbox',
+	                    value: this.props.recipe,
+	                    checked: this.state.isChecked,
+	                    onChange: this.toggleCheckbox })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Checkbox;
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
 	var UniqueIngredient = React.createClass({
 	    displayName: 'UniqueIngredient',
 
@@ -25826,7 +25900,7 @@
 	module.exports = UniqueIngredient;
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25904,7 +25978,7 @@
 	module.exports = Dropdown;
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25930,7 +26004,7 @@
 	module.exports = About;
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25954,78 +26028,6 @@
 	});
 
 	module.exports = Examples;
-
-/***/ },
-/* 231 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var checked_array = [];
-
-	var Checkbox = React.createClass({
-	    displayName: 'Checkbox',
-
-	    getInitialState: function getInitialState() {
-	        return {
-	            isChecked: false
-	            // checked_boxes: checked_array
-	        };
-	    },
-
-	    toggleCheckbox: function toggleCheckbox() {
-	        // console.log("Recipe Value: " + recipe);
-
-	        this.setState({
-	            isChecked: !this.state.isChecked
-	        });
-	        // console.log("THIS IS STATE CHECK");
-	        // console.log(!this.state.isChecked);
-
-	        var recipe = JSON.stringify(this.props.recipe, null, 4);
-	        console.log(recipe);
-
-	        if (!this.state.isChecked === true) {
-	            checked_array.push(recipe);
-	            console.log('New Pushed Array: ' + checked_array);
-	        } else {
-	            checked_array.pop(recipe) || console.log('not in there');
-	            console.log('New popped Array: ' + checked_array);
-	        };
-	        // var update_array = checked_array
-	        // this.props.onToggle(checked_array);
-	        // this.setState({
-	        //     checked_boxes: update_array
-	        // })
-
-	        this.props.handleCheckboxChange(checked_array);
-	    },
-
-	    // onChange={this.handleChange}
-
-	    render: function render() {
-	        var recipe = this.props.recipe.name;
-	        // var ref_check = this.refs.check.value;
-	        // console.log('this.refs.state.checked_boxes : ' + ref_check);
-	        console.log("Recipe: " + recipe + " is set to " + this.state.isChecked);
-	        return React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	                'div',
-	                null,
-	                React.createElement('input', { type: 'checkbox',
-	                    value: this.props.recipe,
-	                    checked: this.state.isChecked,
-	                    onChange: this.toggleCheckbox })
-	            )
-	        );
-	    }
-	});
-
-	module.exports = Checkbox;
 
 /***/ }
 /******/ ]);
