@@ -25493,7 +25493,6 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var RecipeForm = __webpack_require__(225);
 	var RecipeMessage = __webpack_require__(226);
 	var UniqueIngredient = __webpack_require__(228);
 	var Dropdown = __webpack_require__(229);
@@ -25584,7 +25583,7 @@
 	            React.createElement(
 	                'h2',
 	                null,
-	                'Recipes'
+	                'Recipes MicroApp'
 	            ),
 	            React.createElement(Dropdown, { onChange: this.searchIngredient,
 	                list: list,
@@ -25600,86 +25599,7 @@
 	module.exports = Recipes;
 
 /***/ },
-/* 225 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var RecipeForm = React.createClass({
-	    displayName: 'RecipeForm',
-
-
-	    onFormSubmit: function onFormSubmit(e) {
-	        e.preventDefault();
-	        var initState = this.props.list;
-	        var list = this.props.queryResult;
-	        var ingredient = this.refs.ingredient.value;
-	        var new_list = [];
-
-	        if (ingredient.length > 0) {
-	            this.refs.ingredient.value = '';
-	            // var new_list = [];
-	            // var list = this.props.list;
-	            // var list = this.props.queryResult
-	            console.log('this.props.queryResult in onFormSubmit before map');
-	            console.log(list);
-
-	            for (var i = 0; i < list.length; i++) {
-	                // console.log('first for loop');
-	                for (var x = 0; x < list[i].ingredients.length; x++) {
-	                    // console.log('second for loop');
-	                    if (ingredient == list[i].ingredients[x]) {
-	                        // console.log('inner most if statement');
-	                        new_list.push(list[i]);
-	                        // console.log('if statement new list');
-	                        // console.log(new_list);
-	                    } else {
-	                        console.log('hit the else');
-	                        // new_list = "Ingredient not found";
-	                    }
-	                }
-	            }
-	            console.log(new_list);
-	            this.props.onSearch(new_list);
-	        } else {
-	            this.props.onSearch(initState);
-	        };
-	    },
-
-	    render: function render() {
-	        var props_list = this.props.list;
-	        console.log('props_list');
-	        console.log(props_list);
-	        return React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	                'form',
-	                { onSubmit: this.onFormSubmit },
-	                React.createElement(
-	                    'div',
-	                    null,
-	                    React.createElement('input', { type: 'text', ref: 'ingredient', placeholder: 'Enter query here' })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    null,
-	                    React.createElement(
-	                        'button',
-	                        null,
-	                        'Search Ingredient'
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = RecipeForm;
-
-/***/ },
+/* 225 */,
 /* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25687,7 +25607,6 @@
 
 	var React = __webpack_require__(1);
 	var Checkbox = __webpack_require__(227);
-	var UniqueIngredient = __webpack_require__(228);
 
 	var RecipeMessage = React.createClass({
 	    displayName: 'RecipeMessage',
@@ -25769,18 +25688,14 @@
 	    getInitialState: function getInitialState() {
 	        return {
 	            isChecked: false
-	            // checked_boxes: checked_array
 	        };
 	    },
 
 	    toggleCheckbox: function toggleCheckbox() {
-	        // console.log("Recipe Value: " + recipe);
 
 	        this.setState({
 	            isChecked: !this.state.isChecked
 	        });
-	        // console.log("THIS IS STATE CHECK");
-	        // console.log(!this.state.isChecked);
 
 	        // var recipe = JSON.stringify(this.props.recipe, null, 4);
 	        var recipe = this.props.recipe;
@@ -25793,21 +25708,12 @@
 	            checked_array.pop(recipe) || console.log('not in there');
 	            console.log('New popped Array: ' + checked_array);
 	        };
-	        // var update_array = checked_array
-	        // this.props.onToggle(checked_array);
-	        // this.setState({
-	        //     checked_boxes: update_array
-	        // })
 
 	        this.props.handleCheckboxChange(checked_array);
 	    },
 
-	    // onChange={this.handleChange}
-
 	    render: function render() {
 	        var recipe = this.props.recipe.name;
-	        // var ref_check = this.refs.check.value;
-	        // console.log('this.refs.state.checked_boxes : ' + ref_check);
 	        console.log("Recipe: " + recipe + " is set to " + this.state.isChecked);
 	        return React.createElement(
 	            'div',
@@ -25944,7 +25850,7 @@
 	            "div",
 	            null,
 	            React.createElement(
-	                "h2",
+	                "h4",
 	                null,
 	                "Filter by Ingredient"
 	            ),
@@ -25969,6 +25875,11 @@
 	                            " "
 	                        );
 	                    })
+	                ),
+	                React.createElement(
+	                    "h5",
+	                    null,
+	                    "* choosing 'select' will restore full list"
 	                )
 	            )
 	        );
@@ -25995,7 +25906,22 @@
 	            React.createElement(
 	                'h2',
 	                null,
-	                'About component has rendered'
+	                '"When you\'re curious, you find lots of interesting things to do."'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                'I originally studied foreign languages in college as a means to expand culturally and travel the world. This led me to work as an ESL teacher in Spain and India. Upon returning I freelanced in the film industry, eventually writing for DocEd shows like you\'d see on NatGeo & Discovery Science. That\'s where I fell in love with programming...'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                'Now I am a Full Stack Web Developer with a bias towards Front End. I am creative driven, looking for projects that abide by my mantra of "Science, Expression, & the Pursuit of Understanding." I believe in a strong merger of science and the arts, the spark in the powder keg of innovation.'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                'When not coding, I enjoy going to comedy shows and performing sketches.'
 	            )
 	        );
 	    }
@@ -26011,8 +25937,8 @@
 
 	var React = __webpack_require__(1);
 
-	var Examples = React.createClass({
-	    displayName: 'Examples',
+	var Instructions = React.createClass({
+	    displayName: 'Instructions',
 
 	    render: function render() {
 	        return React.createElement(
@@ -26021,13 +25947,37 @@
 	            React.createElement(
 	                'h2',
 	                null,
-	                'Example goes here'
+	                'Instructions'
+	            ),
+	            React.createElement(
+	                'ul',
+	                null,
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    'To install, clone repo and in terminal type \'npm install\''
+	                ),
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    'To run, open 2 terminal tabs. Run \'webpack -w\' in one and \'node server.js\''
+	                ),
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    'To Filter by ingredient, select an ingredient from the dropdown and the Recipes list will update.  To restore full list, select \'select\' at top of dropdown options'
+	                ),
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    'To see Unique Ingredients, click a check box from however many Recipes you desire.'
+	                )
 	            )
 	        );
 	    }
 	});
 
-	module.exports = Examples;
+	module.exports = Instructions;
 
 /***/ }
 /******/ ]);

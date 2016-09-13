@@ -1,5 +1,4 @@
 var React = require('react');
-var RecipeForm = require('RecipeForm');
 var RecipeMessage = require('RecipeMessage');
 var UniqueIngredient = require('UniqueIngredient');
 var Dropdown = require('Dropdown');
@@ -95,7 +94,7 @@ var Recipes = React.createClass({
 
         return (
             <div>
-                <h2>Recipes</h2>
+                <h2>Recipes MicroApp</h2>
 
                 <Dropdown onChange={this.searchIngredient}
                           list={list}

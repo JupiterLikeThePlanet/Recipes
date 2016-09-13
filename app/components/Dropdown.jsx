@@ -73,7 +73,7 @@ var Dropdown = React.createClass({
 
         return (
             <div>
-                <h2>Filter by Ingredient</h2>
+                <h4>Filter by Ingredient</h4>
                 <div>
                     <select id="lang" onChange={this.selectIngredient} ref="ingredient">
                         <option value="">select</option>
@@ -84,6 +84,7 @@ var Dropdown = React.createClass({
                             })
                         }
                     </select>
+                    <h5>* choosing 'select' will restore full list</h5>
                 </div>
             </div>
         )

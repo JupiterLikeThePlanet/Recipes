@@ -1,6 +1,5 @@
 var React = require('react');
 var Checkbox = require('Checkbox');
-var UniqueIngredient = require('UniqueIngredient');
 
 
 
